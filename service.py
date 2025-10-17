@@ -1,11 +1,11 @@
 from flask import Flask, request
-from dotenv import load_dotenv
-
-load_dotenv()
+from extensions.jwt import jwt
 
 
 def create_service():
     app = Flask(__name__)
+
+    jwt.init_app(app)
 
     @app.errorhandler(404)
     def not_found(error):
