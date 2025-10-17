@@ -12,6 +12,7 @@ def create_service():
         return {'message': '404'}
     
     # register blueprints here
-
+    from blueprints.auth.routes import gate_to_auth_bl
+    app.register_blueprint(gate_to_auth_bl, url_prefix='/g/auth')
 
     return app
