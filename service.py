@@ -1,9 +1,14 @@
 from flask import Flask, request
 from extensions.jwt import jwt
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def create_service():
     app = Flask(__name__)
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 
     jwt.init_app(app)
 
