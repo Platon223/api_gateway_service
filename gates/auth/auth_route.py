@@ -13,7 +13,7 @@ def auth_route(service_route):
     else:
         rftk_header = request.headers.get('Authorization')
         rftk = rftk_header.split(" ")[1]
-        req = requests.post(f"{os.getenv('AUTH_SERVICE_URL')}/auth/{service_route}", headers={'Authorization': rftk})
+        req = requests.post(f"{os.getenv('AUTH_SERVICE_URL')}/auth/{service_route}", headers={'Authorization': f'Bearer {rftk}'})
 
     if req.status_code == 200:
         return Response(
