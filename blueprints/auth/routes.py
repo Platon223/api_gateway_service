@@ -14,12 +14,23 @@ def register():
 
 @gate_to_auth_bl.route('/verify', methods=['POST'])
 def verify():
-    return auth_route('verify')
+    args = request.args.get('type')
+    if not args:
+        return auth_route('verify')
+    return auth_route(f'verify?type={args}')
 
 @gate_to_auth_bl.route('/refresh', methods=['POST'])
 @jwt_required(refresh=True)
 def refresh():
     return auth_route('refresh')
+
+@gate_to_auth_bl.route('/forgot_password', methods=['POST'])
+def forgot_password():
+    return auth_route('forgot_password')
+
+@gate_to_auth_bl.route('/new_password', methods=['POST'])
+def new_password():
+    return auth_route('new_password')
 
 
 
