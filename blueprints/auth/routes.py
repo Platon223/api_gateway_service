@@ -32,7 +32,7 @@ def forgot_password():
 def new_password():
     return auth_route('new_password')
 
-@gate_to_auth_bl.route('/oauth')
+@gate_to_auth_bl.route('/oauth', methods=['POST'])
 def oauth():
     return auth_route('oauth')
 
