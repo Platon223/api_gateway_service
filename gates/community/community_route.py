@@ -7,7 +7,7 @@ load_dotenv()
 
 def community_route(route):
     json_data = request.get_json()
-    req = requests.post(f"{os.getenv("COMMUNITY_SERVICE_URL")}/community/{route}", json=json_data)
+    req = requests.post(f"{os.getenv('COMMUNITY_SERVICE_URL')}/community/{route}", json=json_data)
 
     if req.status_code == 200:
         return Response(
