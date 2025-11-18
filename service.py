@@ -18,6 +18,8 @@ def create_service():
     
     # register blueprints here
     from blueprints.auth.routes import gate_to_auth_bl
+    from blueprints.community.routes import gate_to_community_bl
     app.register_blueprint(gate_to_auth_bl, url_prefix='/g/auth')
+    app.register_blueprint(gate_to_community_bl, url_prefix='/g/community')
 
     return app
