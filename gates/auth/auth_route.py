@@ -11,9 +11,11 @@ def auth_route(service_route):
         json_data = request.get_json()
         req = requests.post(f"{os.getenv('AUTH_SERVICE_URL')}/auth/{service_route}", json=json_data)
     else:
-        rftk_header = request.headers.get('Authorization')
-        rftk = rftk_header.split(" ")[1]
-        req = requests.post(f"{os.getenv('AUTH_SERVICE_URL')}/auth/{service_route}", headers={'Authorization': f'Bearer {rftk}'})
+        actk_header = request.headers.get('Authorization')
+        if not actk_header:
+            return {"message": "no auth header provided"}
+        actk = actk_header.split(" ")[1]
+        req = requests.post(f"{os.getenv('AUTH_SERVICE_URL')}/auth/{service_route}", headers={'Authorization': f'Bearer {actk}'})
 
     if req.status_code == 200:
         return Response(
