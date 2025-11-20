@@ -7,7 +7,7 @@ gate_to_auth_bl = Blueprint('gate_to_auth', __name__)
 @gate_to_auth_bl.route('/<endpoint>', methods=['POST', 'GET'])
 def route(endpoint):
     step = request.args.get("step")
-    return auth_route(f'{endpoint}' + f'?step={step}')
+    return auth_route(f'{endpoint}' + {f'?step={step}' if step else ''})
 
 
 
